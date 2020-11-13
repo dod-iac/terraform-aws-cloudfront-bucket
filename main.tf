@@ -9,7 +9,27 @@
  *
  *   aws_cloudfront_origin_access_identity_arn = aws_cloudfront_origin_access_identity.main.iam_arn
  *   name = format("app-%s-www-%s-%s", var.application, var.environment, var.region)
- *   region = var.region
+ *   logging_target_bucket = var.logs_bucket_name
+ *   tags = {
+ *     Application = var.application
+ *     Environment = var.environment
+ *     Automation  = "Terraform"
+ *   }
+ * }
+ * ```
+ *
+ * Pass an aliased provider to the module as `aws`, to change the region the bucket is in.
+ *
+ * ```hcl
+ * module "cloudfront_bucket" {
+ *   source = "dod-iac/cloudfront-bucket/aws"
+ *
+ *   providers = {
+ *     aws           = aws.us-east-1
+ *   }
+ *
+ *   aws_cloudfront_origin_access_identity_arn = aws_cloudfront_origin_access_identity.main.iam_arn
+ *   name = format("app-%s-www-%s-%s", var.application, var.environment, "us-east-1")
  *   logging_target_bucket = var.logs_bucket_name
  *   tags = {
  *     Application = var.application
@@ -21,9 +41,17 @@
  *
  * ## Terraform Version
  *
- * Terraform 0.12. Pin module version to ~> 1.0.0 . Submit pull-requests to master branch.
+ * Terraform 0.13. Pin module version to ~> 2.0.0 . Submit pull-requests to master branch.
+ *
+ * Terraform 0.12. Pin module version to ~> 1.0.0 . Submit pull-requests to terraform012 branch.
  *
  * Terraform 0.11 is not supported.
+ *
+ * ## Upgrade Paths
+ *
+ * ### Upgrading from 1.0.0 to 2.x.x
+ *
+ * Version 2.x.x removes the `region` variable.  Pass an aliased provider to the module as `aws`, to change the region the bucket is in.
  *
  * ## License
  *
@@ -33,7 +61,6 @@
 # The AWS S3 Bucket used to host files served by CloudFront.
 resource "aws_s3_bucket" "main" {
   bucket = var.name
-  region = length(var.region) > 0 ? var.region : null
 
   acl = "private"
 
