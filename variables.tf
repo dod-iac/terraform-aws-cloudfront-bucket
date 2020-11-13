@@ -19,12 +19,6 @@ variable "name" {
   description = "The name of the AWS S3 Bucket used to host files served by AWS CloudFront."
 }
 
-variable "region" {
-  type        = string
-  description = "If specified, the AWS region this bucket should reside in. Otherwise, the region used by the callee."
-  default     = ""
-}
-
 variable "tags" {
   description = "Tags to apply to the AWS S3 Bucket."
   type        = map(string)
