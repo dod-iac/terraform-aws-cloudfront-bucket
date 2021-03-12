@@ -1,3 +1,4 @@
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Usage
 
 Creates an AWS S3 Bucket used to host files served by AWS CloudFront.
@@ -61,13 +62,26 @@ This project constitutes a work of the United States Government and is not subje
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13 |
-| aws | >= 3.0.0 |
+| aws | ~> 3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.0.0 |
+| aws | ~> 3.0 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) |
+| [aws_s3_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) |
+| [aws_s3_bucket_public_access_block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) |
 
 ## Inputs
 
@@ -85,4 +99,4 @@ This project constitutes a work of the United States Government and is not subje
 |------|-------------|
 | arn | The ARN of the AWS S3 Bucket used to host files served by AWS CloudFront. |
 | bucket\_regional\_domain\_name | The bucket regional domain name of the AWS S3 Bucket used to host files served by AWS CloudFront. |
-
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
